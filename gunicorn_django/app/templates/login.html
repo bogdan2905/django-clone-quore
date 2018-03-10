@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="form-group">
+        {% if errors != '' %}
+            <div class="alert alert-dismissible alert-danger">
+                <strong>{{ errors }}</strong>
+                <div class="alert-link">Change a few things up</div>
+                and try submitting
+                again.
+            </div>
+        {% endif %}
+        <form action="" , method="post">
+            {% csrf_token %}
+            {% for input in form %}
+                <label class="exampleInput">{{ input.label }}</label>
+                <div placeholder="{{ input.label }}">{{ input }} </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">login</button>
+        </form>
+    </div>
+
+{% endblock %}
