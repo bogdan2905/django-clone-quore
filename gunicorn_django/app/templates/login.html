@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
     <div class="form-group">
         {% if errors != '' %}
@@ -10,11 +9,11 @@
                 again.
             </div>
         {% endif %}
-        <form action="" , method="post">
+        <form action="" method="post">
             {% csrf_token %}
             {% for input in form %}
                 <label class="exampleInput">{{ input.label }}</label>
-                <div placeholder="{{ input.label }}">{{ input }} </div>
+                <div>{{ input }} </div>
             {% endfor %}
             <button type="submit" class="btn btn-primary">login</button>
         </form>

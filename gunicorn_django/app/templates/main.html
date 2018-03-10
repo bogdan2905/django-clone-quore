@@ -2,6 +2,8 @@
 {% block head %}
     {% if user %}
         <h4>Hello, {{ user }}</h4>
+    {% else %}
+        {{ block.super }}
     {% endif %}
 {% endblock %}
 {% block content %}
