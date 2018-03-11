@@ -7,23 +7,17 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
-<div class="jumbotron">
-    <h1 class="display-3">Q&A</h1>
-    <hr class="my-4">
-    
-
-
 <div class="container">
     <div class="jumbotron">
-        <h1 class="display-3"><a href="/app" style="text-decoration: none; color: #000000">Q&A</a></h1>
+        <h1 class="display-3"><a href="/" style="text-decoration: none; color: #000000">Q&A</a></h1>
         <hr class="my-4">
         {% block head %}
-            <a href="/app/ask" class="btn btn-primary btn-lg" style="float: right; margin: 0 5px;">Ask</a>
+            <a href="/ask" class="btn btn-primary btn-lg" style="float: right; margin: 0 5px;">Ask</a>
             {% if user %}
                 <h4 style="float: left">Hello, {{ user }}</h4>
-                <a href="/app/exit" class="btn btn-primary btn-lg" style="float: right; margin: 0 5px;">Exit</a>
+                <a href="/exit" class="btn btn-primary btn-lg" style="float: right; margin: 0 5px;">Exit</a>
             {% else %}
-                <a href="/app/login" class="btn btn-primary btn-lg" style="float: right;">Log in</a>
+                <a href="/login" class="btn btn-primary btn-lg" style="float: right;">Log in</a>
             {% endif %}
         {% endblock %}
 

@@ -14,7 +14,7 @@ def index(request):
 
 def login(request):
     if request.user:
-        return HttpResponseRedirect('/app')
+        return HttpResponseRedirect('/')
     errors = ''
     if request.method == 'POST':
         user_login = request.POST.get('login')
@@ -22,7 +22,7 @@ def login(request):
         session_id = Session.do_session(user_login, password)
 
         if session_id:
-            response = HttpResponseRedirect('/app/')
+            response = HttpResponseRedirect('/')
             response.set_cookie(key='session_id', value=session_id,
                                 httponly=True,
                                 expires=datetime.now() + timedelta(days=2))
@@ -39,7 +39,7 @@ def logout(request):
     if session_id is not None:
         Session.objects.filter(key=session_id).delete()
 
-    return HttpResponseRedirect('/app')
+    return HttpResponseRedirect('/')
 
 
 def create_question(request):
@@ -54,7 +54,7 @@ def create_question(request):
     elif request.user:
         form = CreateQuestion()
     else:
-        return HttpResponseRedirect('/app/login')
+        return HttpResponseRedirect('/login')
     return render(request, 'ask.html', {'form': form})
 
 

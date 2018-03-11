@@ -9,13 +9,20 @@
                 again.
             </div>
         {% endif %}
+
         <form action="" method="post">
             {% csrf_token %}
-            {% for input in form %}
-                <label class="exampleInput">{{ input.label }}</label>
-                <div>{{ input }} </div>
-            {% endfor %}
-            <button type="submit" class="btn btn-primary">login</button>
+            <div class="form-group">
+
+                <input type="text" class="form-control" name="{{ form.login.html_name }}"
+                       style="width: 30%; margin: 10px 0" placeholder="Enter Login">
+
+                <input type="password" class="form-control"
+                       name="{{ form.password.html_name }}" placeholder="Password"
+                       style="width: 30%;margin: 10px 0">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 15%">login</button>
         </form>
     </div>
 

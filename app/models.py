@@ -29,7 +29,7 @@ class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_url(self):
-        return "/app/ask/question/{}/".format(self.id)
+        return "/ask/question/{}/".format(self.id)
 
 
 class Answer(models.Model):
