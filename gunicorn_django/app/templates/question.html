@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-12">{{ question.description }}</h1>
+            <p class="lead">
+                by
+                <a href="#">{{ question.author }}</a>
+            </p>
+
+            <hr>
+            <!-- Date/Time -->
+            <p>{{ question.pub_date }}</p>
+            <hr>
+
+            <span style="font-size: 25px">{{ question.text }}</span>
+        </div>
+    </div>
+
+{% endblock %}

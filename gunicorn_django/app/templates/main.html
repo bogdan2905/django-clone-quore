@@ -1,18 +1,11 @@
 {% extends 'base.html' %}
-{% block head %}
-    {% if user %}
-        <h4>Hello, {{ user }}</h4>
-    {% else %}
-        {{ block.super }}
-    {% endif %}
-{% endblock %}
 {% block content %}
-    <h3>Last question</h3>
     <div class="row">
         {% for question in latest %}
-            <div class="col-md-6">
-                <h4><a href="{{ question.get_url }}">{{ question.description }}</a></h4>
-                <h5>author: {{ question.author }} date: {{ question.pub_date }}</h5>
+            <div class="col-md-12" style="margin: 20px 0">
+                <h2><a href="{{ question.get_url }}" style="text-decoration: none;">{{ question.description }}</a></h2>
+                <hr style="margin: 5px 0">
+                <span style="font-size: 20px">by <a href="#">{{ question.author }}</a> {{ question.pub_date }}</span>
             </div>
         {% endfor %}
     </div>

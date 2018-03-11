@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from datetime import datetime, timedelta
 from django.db import models
 from hashlib import md5
+import uuid
 
 
 class User(models.Model):
@@ -28,7 +29,7 @@ class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_url(self):
-        return "question/{}/".format(self.id)
+        return "/app/ask/question/{}/".format(self.id)
 
 
 class Answer(models.Model):
@@ -56,7 +57,7 @@ class Session(models.Model):
         user = User.valid_user(user, hash_password)
 
         if user:
-            session_id = md5().hexdigest()
+            session_id = uuid.uuid4().hex
             if Session.unique_key(session_id) is None:
                 Session.objects.create(user=user, key=session_id,
                                        date=datetime.now() + timedelta(days=2))
