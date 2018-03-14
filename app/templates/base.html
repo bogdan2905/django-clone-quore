@@ -14,7 +14,7 @@
         {% block head %}
             <a href="/ask" class="btn btn-primary btn-lg" style="float: right; margin: 0 5px;">Ask</a>
             {% if user %}
-                <h4 style="float: left">Hello, {{ user }}</h4>
+                <h4 style="float: left">Hello, {{ my_app_user }}</h4>
                 <a href="/exit" class="btn btn-primary btn-lg" style="float: right; margin: 0 5px;">Exit</a>
             {% else %}
                 <a href="/login" class="btn btn-primary btn-lg" style="float: right;">Log in</a>

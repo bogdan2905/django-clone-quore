@@ -7,7 +7,7 @@ from .forms import Login, CreateQuestion
 
 
 def index(request):
-    latest = Question.objects.order_by('-id').all()[:10]
+    latest = Question.objects.order_by('pub_date').all()[:10]
     user = request.my_app_user
     return render(request, 'main.html', context={'latest': latest, 'user': user})
 
