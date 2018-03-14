@@ -1,5 +1,6 @@
 from .models import Session
 from datetime import datetime
+from django.contrib.auth.models import AnonymousUser
 
 
 class CheckSession:
@@ -11,11 +12,11 @@ class CheckSession:
 
         try:
             session = Session.objects.get(key=session_id, date__gt=datetime.now())
-            request.session = session
-            request.user = session.user
+            request.my_app_session = session
+            request.my_app_user = session.user
         except Session.DoesNotExist:
-            request.session = None
-            request.user = None
+            request.my_app_session = None
+            request.my_app_user = None
 
         response = self.get_response(request)
         return response
