@@ -8,12 +8,12 @@ from .forms import Login, CreateQuestion
 
 def index(request):
     latest = Question.objects.order_by('-id').all()[:10]
-    user = request.user
+    user = request.my_app_user
     return render(request, 'main.html', context={'latest': latest, 'user': user})
 
 
 def login(request):
-    if request.user:
+    if request.my_app_user:
         return HttpResponseRedirect('/')
     errors = ''
     if request.method == 'POST':
@@ -48,10 +48,10 @@ def create_question(request):
         form = CreateQuestion(request.POST)
 
         if form.is_valid():
-            question = form.save(request.user)
+            question = form.save(request.my_app_user)
             url = question.get_url()
             return HttpResponseRedirect(url)
-    elif request.user:
+    elif request.my_app_user:
         form = CreateQuestion()
     else:
         return HttpResponseRedirect('/login')
