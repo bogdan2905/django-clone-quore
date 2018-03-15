@@ -1,6 +1,7 @@
 from django import forms
 from .models import Question, User
 import hashlib
+from django.core.exceptions import ValidationError
 
 
 class Login(forms.Form):
@@ -12,6 +13,22 @@ class Login(forms.Form):
         hash_password = hashlib.md5(clean_password.encode()).hexdigest()
         User.objects.create(login=self.cleaned_data['login'],
                             password=hash_password)
+
+
+class Register(Login):
+    second_password = forms.CharField(widget=forms.PasswordInput)
+
+    def clean_second_password(self):
+        if self.cleaned_data['password'] != self.cleaned_data['second_password']:
+            raise ValidationError('different password')
+        return self.cleaned_data['second_password']
+
+    def clean_login(self):
+        try:
+            User.objects.get(login=self.cleaned_data['login'])
+            raise ValidationError('username is already taken')
+        except User.DoesNotExist:
+            return self.cleaned_data['login']
 
 
 class CreateQuestion(forms.Form):

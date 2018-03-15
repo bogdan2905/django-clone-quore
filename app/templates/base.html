@@ -12,12 +12,13 @@
         <h1 class="display-3"><a href="/" style="text-decoration: none; color: #000000">Q&A</a></h1>
         <hr class="my-4">
         {% block head %}
-            <a href="/ask" class="btn btn-primary btn-lg" style="float: right; margin: 0 5px;">Ask</a>
-            {% if user %}
+            {% if my_app_user %}
                 <h4 style="float: left">Hello, {{ my_app_user }}</h4>
                 <a href="/exit" class="btn btn-primary btn-lg" style="float: right; margin: 0 5px;">Exit</a>
+                <a href="/ask" class="btn btn-primary btn-lg" style="float: right; margin: 0 5px;">Ask</a>
             {% else %}
-                <a href="/login" class="btn btn-primary btn-lg" style="float: right;">Log in</a>
+                <a href="/login" class="btn btn-primary btn-lg" style="float: right; margin: 0 5px;">Log in</a>
+                <a href="/create-account" class="btn btn-primary btn-lg" style="float: right; margin: 0 5px;">Create account</a>
             {% endif %}
         {% endblock %}
 

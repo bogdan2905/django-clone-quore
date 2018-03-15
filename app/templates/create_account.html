@@ -1,0 +1,16 @@
+{% extends 'login.html' %}
+
+{% block content %}
+    <form method="post">
+    {% csrf_token %}
+        <div class="form-group">
+            <input type="text" style="width: 30%; margin: 10px 0" class="form-control" name="{{ form.login.html_name }}"
+                   placeholder="username">
+            <input type="password" style="width: 30%; margin: 10px 0" class="form-control"
+                   name="{{ form.password.html_name }}" placeholder="password">
+            <input type="password" style="width: 30%; margin: 10px 0" class="form-control"
+                   name="{{ form.second_password.html_name }}" placeholder="password">
+            <button type="submit" class="btn btn-primary" style="width: 15%">Create</button>
+        </div>
+    </form>
+{% endblock %}
