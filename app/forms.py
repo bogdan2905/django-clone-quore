@@ -1,5 +1,5 @@
 from django import forms
-from .models import Question, User
+from .models import Question, User, Answer
 import hashlib
 from django.core.exceptions import ValidationError
 
@@ -41,3 +41,15 @@ class CreateQuestion(forms.Form):
                                            text=self.cleaned_data['text'],
                                            author=author)
         return question
+
+
+class CreateAnswer(forms.Form):
+    id = forms.IntegerField()
+    text = forms.CharField(widget=forms.TextInput)
+
+    def save(self, user):
+        author = User.objects.get(login=user)
+        answer = Answer.objects.create(author=author,
+                                       text=self.cleaned_data['text'],
+                                       question_id=self.cleaned_data['id'])
+        return answer

@@ -2,7 +2,7 @@ from django.conf.urls import url
 from .views import index
 from .views_account import login, logout, create_account
 from .views_questions import create_question, show_question
-
+from .view_answer import answer
 
 urlpatterns = [
     url(r'^$', index, name='question'),

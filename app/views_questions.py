@@ -1,7 +1,8 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, Http404
-from .models import Question
-from .forms import CreateQuestion
+from .models import Question, Answer
+from .forms import CreateQuestion, CreateAnswer
+from .view_answer import answer
 
 
 def create_question(request):
@@ -21,8 +22,21 @@ def create_question(request):
 
 
 def show_question(request, id_question):
+    if request.method == "POST":
+        resp = answer(request)
+        if resp:
+            return resp
     try:
         question = Question.objects.get(id=id_question)
-        return render(request, 'question.html', {'question': question})
+        answer_form = CreateAnswer()
+        try:
+            answers = Answer.objects.filter(question=question).all()
+        except Answer.DoesNotExist:
+            answers = []
+
+        return render(request, 'question.html', {'question': question,
+                                                 'answers': answers,
+                                                 'count_answer': len(answers),
+                                                 'answer': answer_form})
     except Question.DoesNotExist:
         return Http404
